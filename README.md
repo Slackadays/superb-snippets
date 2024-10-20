@@ -144,3 +144,46 @@ This checks if an environment variable is set to a value that you can interpret 
 bool skip_some_process = envVarIsTrue("SKIP_SOME_PROCESS");
 std::cout << skip_some_process << std::endl;
 ```
+
+## Find Levenshtein distance between any two strings
+
+```cpp
+size_t levenshteinDistance(const std::string_view& one, const std::string_view& two) {
+    if (one == two) return 0;
+
+    if (one.empty()) return two.size();
+    if (two.empty()) return one.size();
+
+    std::vector<std::vector<size_t>> matrix(one.size() + 1, std::vector<size_t>(two.size() + 1));
+
+    for (size_t i = 0; i <= one.size(); i++)
+        matrix.at(i).at(0) = i;
+
+    for (size_t j = 0; j <= two.size(); j++)
+        matrix.at(0).at(j) = j;
+
+    for (size_t i = 1; i <= one.size(); i++) {
+        for (size_t j = 1; j <= two.size(); j++) {
+            if (one.at(i - 1) == two.at(j - 1))
+                matrix.at(i).at(j) = matrix.at(i - 1).at(j - 1);
+            else
+                matrix.at(i).at(j) = std::min({matrix.at(i - 1).at(j - 1), matrix.at(i - 1).at(j), matrix.at(i).at(j - 1)}) + 1;
+        }
+    }
+
+    return matrix.at(one.size()).at(two.size());
+};
+```
+
+This calculates the Levenshtein distance between two strings using any character as a valid difference.
+
+### Requirements
+
+`<string_view>`, `<vector>`
+
+### Example
+
+```cpp
+auto difference = levenshteinDistance("hello", "hallo");
+// difference = 1
+```
