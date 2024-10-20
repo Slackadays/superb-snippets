@@ -1,8 +1,10 @@
 # ✂️ Welcome to Superb Snippets
 
-Super Snippets is my collection of C++ snippets that solve common tasks that most programs of yours probably need to do, but for which lack an obvious and/or optimized solution.
+Super Snippets is my collection of C++ snippets that solve common tasks most programs of yours probably need to do but for which lack an obvious and/or optimized solution. 
 
-To use these snippets, just copy and paste them into your own code. And if they don't fit your needs perfectly, feel free to customize them!
+To use these snippets, just copy and paste them into your own code. And if they don't fit your needs perfectly, feel free to customize them.
+
+Superb Snippets are better than whatever AI you use for coding because these have been verified to work, and work well they do!
 
 ## Where these came from
 
@@ -115,4 +117,30 @@ This writes arbitrary content to a specified file and returns how many bytes it 
 ```cpp
 auto content = "Your mother";
 writeToFile("Gigantic_Objects.txt", content);
+```
+
+## Is an environment variable set to a "true" value?
+
+```cpp
+bool envVarIsTrue(const std::string_view& name) {
+    auto temp = getenv(name.data());
+    if (temp == nullptr) return false;
+    std::string result(temp);
+    std::transform(result.begin(), result.end(), result.begin(), [](unsigned char c) { return std::tolower(c); });
+    if (result == "1" || result == "true" || result == "yes" || result == "y" || result == "on" || result == "enabled") return true;
+    return false;
+}
+```
+
+This checks if an environment variable is set to a value that you can interpret as "true."
+
+### Requirements
+
+`<string_view>`, `<string>`
+
+### Example
+
+```cpp
+bool skip_some_process = envVarIsTrue("SKIP_SOME_PROCESS");
+std::cout << skip_some_process << std::endl;
 ```
