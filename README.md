@@ -1,12 +1,12 @@
 # ✂️ Welcome to Superb Snippets
 
-Super Snippets is my collection of C++ snippets that solve common tasks that most programs of yours probably need to do, but lack an obvious solution.
+Super Snippets is my collection of C++ snippets that solve common tasks that most programs of yours probably need to do, but for which lack an obvious and/or optimized solution.
 
 To use these snippets, just copy and paste them into your own code. And if they don't fit your needs perfectly, feel free to customize them!
 
 ## Where these came from
 
-Most of these snippets are from my projects like [Clipboard](https://github.com/Slackadays/Clipboard), so they're already tested and used in a production setting.
+Most of these snippets are from my projects like [Clipboard](https://github.com/Slackadays/Clipboard), so they're already optimized, tested, and used in a production setting.
 
 If these snippets change upstream, then I may update them here.
 
